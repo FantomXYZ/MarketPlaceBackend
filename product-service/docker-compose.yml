@@ -1,0 +1,21 @@
+services:
+  product_db:
+    container_name: product_db
+    image: postgres:15
+    volumes:
+      - user_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: product_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user
+    ports:
+      - '5450:5432'
+    networks:
+      - marketplace-network
+
+volumes:
+  user_db:
+
+networks:
+  marketplace-network:
+    driver: bridge
