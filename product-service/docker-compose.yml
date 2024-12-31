@@ -3,7 +3,7 @@ services:
     container_name: product_db
     image: postgres:15
     volumes:
-      - user_db:/var/lib/postgresql/data
+      - product_db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: product_db
       POSTGRES_USER: user
@@ -14,7 +14,7 @@ services:
       - marketplace-network
 
 volumes:
-  user_db:
+  product_db_data:  # Здесь определён том
 
 networks:
   marketplace-network:

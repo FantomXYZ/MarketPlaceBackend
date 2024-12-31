@@ -1,6 +1,6 @@
 package by.fantom.product_service.dto;
 
-import jakarta.persistence.Column;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,14 @@ import lombok.NoArgsConstructor;
 public class ProductDTO {
 
     private Long id;
-    private String name;
-    private Long owner_id;
-    private String description;
-    private Long image_id;
 
+    private String name;
+
+    private String sellerId;
+
+    private String description;
+
+    private Double price;
+
+    private Long imageId;
 }

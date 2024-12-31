@@ -1,7 +1,7 @@
 package by.fantom.product_service.entities;
+
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.context.annotation.Primary;
 
 @Entity
 @Getter
@@ -10,10 +10,11 @@ import org.springframework.context.annotation.Primary;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Image {
-
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="imagePath")
-    private String imagePath;
+    @Column(name = "url")
+    private String url;
 }

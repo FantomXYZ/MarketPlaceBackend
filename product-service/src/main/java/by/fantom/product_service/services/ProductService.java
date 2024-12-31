@@ -17,17 +17,44 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public ProductDTO toDTO(Product product) {
-        return new ProductDTO(product.getId(), product.getName(), product.getOwner_id(), product.getDescription(), product.getImage_id());
+        return new ProductDTO(
+                product.getId(),
+                product.getName(),
+                product.getSellerId(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getImageId()
+        );
     }
+
+    public Product toEntity(ProductDTO productDTO){
+        return new Product(productDTO.getId(),productDTO.getName(),
+                productDTO.getSellerId(),productDTO.getDescription(),productDTO.getPrice(),productDTO.getImageId());
+    }
+
 
     public ProductDTO findById(Long id) {
         Optional<Product> product = productRepository.findById(id);
         return toDTO(product.get());
     }
 
-    public Set<ProductDTO> findAll() {
+    public List<ProductDTO> findAll() {
         List<Product> products = productRepository.findAll();
-        return products.stream().map(this::toDTO).collect(Collectors.toSet());
+        return products.stream().map(this::toDTO).collect(Collectors.toList());
+    }
 
+    public ProductDTO create(ProductDTO productDTO){
+        Product product = productRepository.save(toEntity(productDTO));
+        return toDTO(product);
+    }
+
+    public void deleteById(Long id){
+        productRepository.deleteById(id);
+    }
+
+    public ProductDTO update(Long id, ProductDTO productDTO){
+        productDTO.setId(id);
+        Product updatedProduct = productRepository.save(toEntity(productDTO));
+        return toDTO(updatedProduct);
     }
 }

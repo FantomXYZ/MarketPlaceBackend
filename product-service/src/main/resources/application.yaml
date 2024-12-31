@@ -1,0 +1,24 @@
+server:
+  port: 8081 # ???? ??? ?????? ??????????
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/marketplace-realm
+          jwk-set-uri: http://localhost:8090/realms/marketplace-realm/protocol/openid-connect/certs
+
+  profiles:
+    active: dev
+
+keycloak:
+  realm: marketplace-realm
+  auth-server-url: http://localhost:8090
+  client-id: marketplace-client
+  client-secret: HwNdSK8WimxrqurmV4JJcqjyoPDVrEiN
+  bearer-only: true
+  public-client: false
+
+
+
